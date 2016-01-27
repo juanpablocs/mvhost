@@ -1,0 +1,19 @@
+{
+  "name": "mvhost",
+  "version": "1.0.0",
+  "description": "create virtualhost and remove with npm",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "bin": {
+    "mvhost": "./index.js"
+  },
+  "author": "juanpablocs21@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "commander": "^2.9.0",
+    "exec": "^0.2.1",
+    "inquirer": "^0.11.4"
+  }
+}
