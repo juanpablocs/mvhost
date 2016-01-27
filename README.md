@@ -1,7 +1,18 @@
 # mvhost
 create simple virtualhost for apache2 with npm
 
-copy .vhost in your project base
+###important
+copy file .vhost in your project base
+
+install in you machine:
+```
+sudo npm install mvhost --global
+```
+
+before to execute add superuser permission (with "exit" to close superuser)
+```
+sudo -s
+```
 
 execute to create:
 ```
