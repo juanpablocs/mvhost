@@ -1,6 +1,6 @@
 {
   "name": "mvhost",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "create virtualhost and remove with npm",
   "main": "index.js",
   "scripts": {
@@ -10,6 +10,20 @@
     "mvhost": "./index.js"
   },
   "author": "juanpablocs21@gmail.com",
+  "bugs": {
+    "url": "https://github.com/juanpablocs/mvhost/issues"
+  },
+  "homepage": "https://github.com/juanpablocs/mvhost",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/juanpablocs/mvhost"
+  },
+  "keywords": [
+    "virtualhost",
+    "vhost",
+    "create virtualhost",
+    "cli vhost"
+  ],
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0",
