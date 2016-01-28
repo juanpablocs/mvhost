@@ -19,6 +19,7 @@ function removeVhost(cb){
 
     inquirer.prompt(self.questions, function(res){
       var apache2_site = "/etc/apache2/sites-available/";
+      var apache2_enable = "/etc/apache2/sites-enabled/";
       var conf_site = res.nameDomain + ".conf";
       var to = apache2_site + conf_site;
       var hosts = '/etc/hosts';
@@ -45,7 +46,7 @@ function removeVhost(cb){
           return cb(err);
         }
 
-        var exec_removeSiteConf = "rm -f " + to;
+        var exec_removeSiteConf = "rm -f " + to + " && rm -f " + (apache2_enable + conf_site);
         exec(exec_removeSiteConf, function(err, out, code) {
           if (err instanceof Error)
             throw err;
