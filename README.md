@@ -1,6 +1,8 @@
 # mvhost
 Npm for create simple virtualhost for apache2.
 
+![](https://raw.github.com/juanpablocs/mvhost/master/example.gif)
+
 ###Installation
 ```
 sudo npm install mvhost --global
