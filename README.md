@@ -8,24 +8,28 @@ sudo npm install mvhost --global
 
 ###Usage
 
-Enter superuser mode in terminal 
+Create a new virtualhost (use sudo)
 ```
-sudo -s
-```
-
-Create a new virtualhost
-```
-mvhost --create
+sudo mvhost
 ```
 
 Remove a existing virtualhost
 ```
-mvhost --remove
+sudo mvhost --remove
 ```
 
 For help
 ```
 mvhost --help
+```
+
+###Demo
+quick demo
+```
+mkdir myproject && cd myproject && echo "hello world">index.php
+#create virtualhost
+sudo mvhost
+
 ```
 
 More docs in next days.
