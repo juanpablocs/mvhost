@@ -2,7 +2,7 @@
 create simple virtualhost for apache2 with npm
 
 ###important
-copy file .vhost in your project base
+use mode superuser
 
 install in you machine:
 ```
