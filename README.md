@@ -1,32 +1,31 @@
 # mvhost
-create simple virtualhost for apache2 with npm
+Npm for create simple virtualhost for apache2.
 
-###important
-use mode superuser
-
-install in you machine:
+###Installation
 ```
 sudo npm install mvhost --global
 ```
 
-before to execute add superuser permission (with "exit" to close superuser)
+###Usage
+
+Enter superuser mode in terminal 
 ```
 sudo -s
 ```
 
-execute to create:
+Create a new virtualhost
 ```
 mvhost --create
 ```
 
-execute to remove:
+Remove a existing virtualhost
 ```
 mvhost --remove
 ```
 
-execute to help:
+For help
 ```
 mvhost --help
 ```
 
-in progress..
+More docs in next days.
