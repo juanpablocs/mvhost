@@ -5,7 +5,6 @@ var path        = require('path');
 
 var validations = require('./validations');
 
-
 function createVhost(cb){
   this.vhostFile = './.vhost';
 
