@@ -12,13 +12,20 @@ if( !userRoot ) {
   return;
 }
 
-program
-  .version('0.0.1')
+program.version('0.0.8');
 
+program
   .command('create <domain>')
-  .description('create domain.com for create virtualhost')
+  .description('create virtualhost for apache2')
   .action(function(domain){
     new apacheVhost().create(domain, program.path);
+  });
+
+program
+  .command('delete <domain>')
+  .description('delete virtualhost in apache2')
+  .action(function(domain){
+    new apacheVhost().delete(domain);
   });
 
 program
