@@ -56,12 +56,10 @@ function vHost () {
        * Enable site and Reload apache
        */
       var apacheScript = '' +
-        '### enable website'+
-        'cd ' + sitesEnable + ' && ln -s ' + sitesAvailableDomain +
-
-        '### restart Apache'+
+        'cd ' + sitesEnable + ' && ln -s ' + sitesAvailableDomain + ' && '+
         '/etc/init.d/apache2 reload'
       ;
+      console.log(apacheScript);
 
       exec(apacheScript, function (error, stdout, stderr) {
         if( stderr ) {
