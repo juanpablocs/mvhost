@@ -1,6 +1,6 @@
 {
   "name": "mvhost",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "create virtualhost and remove with npm",
   "main": "index.js",
   "scripts": {
@@ -27,7 +27,6 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^2.9.0",
-    "exec": "^0.2.1",
     "inquirer": "^0.11.4"
   }
 }

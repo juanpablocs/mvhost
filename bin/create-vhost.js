@@ -1,9 +1,10 @@
-var exec        = require('exec');
+var exec        = require('child_process').exec;
 var fs          = require('fs');
 var inquirer    = require('inquirer');
 var path        = require('path');
 
 var validations = require('./validations');
+var utils       = require('./utils');
 
 function createVhost(cb){
   this.vhostFile = './.vhost';
@@ -41,7 +42,7 @@ function createVhost(cb){
     }
   ];
 
-  (function(self){
+  (function(self, cb){
     inquirer.prompt(self.questions, function(res){
       try {
         // var str = fs.readFileSync(self.vhostFile)
@@ -50,56 +51,47 @@ function createVhost(cb){
                     .replace(/\{\{domain\}\}/g, res.nameDomain)
                     .replace(/\{\{path\}\}/g, res.namePath);
 
-        console.log(str);
-        var apache2_site = "/etc/apache2/sites-available/";
-        var conf_site = res.nameDomain + ".conf";
-        var to = apache2_site + conf_site;
+        var apache2_site  = "/etc/apache2/sites-available/";
+        var conf_site     = res.nameDomain + ".conf";
+        var to            = apache2_site + conf_site;
+
+        var commands      = {};
+            commands.a2ensite = "cd /etc/apache2/sites-enabled && ln -s " + to;
+            commands.hosts    = 'echo "127.0.0.1  '+res.nameDomain+'" >> /etc/hosts';
+            commands.restart  = 'service apache2 restart';
 
         try{
           fs.writeFileSync(to, str);
-          var exec_a2ensite = "cd /etc/apache2/sites-enabled && ln -s " + to;
-          exec(exec_a2ensite, function(err, out, code) {
-          if (err instanceof Error)
-            throw err;
-          console.log('-----------------------');
-          console.log('RUN: ' + exec_a2ensite);
-          // console.log('out' + out);
-          console.log(' ');
+          exec(commands.a2ensite, function(err, out, code) {
+            if (err instanceof Error)
+              throw err;
+            utils.message(commands.a2ensite);
 
-          var exec_host = 'echo "127.0.0.1  '+res.nameDomain+'" >> /etc/hosts';
-          exec(exec_host, function(err, out){
-            if(err instanceof Error)
+            exec(commands.hosts, function(err, out){
+              if(err instanceof Error)
                 throw err;
-            console.log('-----------------------');
-            console.log('RUN: ' + exec_host);
-            // console.log('out' + out);
-            console.log(' ');
-          });
+              utils.message(commands.hosts);
+            });
 
-          var exec_restart = 'service apache2 restart';
-          exec(exec_restart, function(err){
-            if(err instanceof Error)
+            exec(commands.restart, function(err){
+              if(err instanceof Error)
                 throw err;
-            console.log('-----------------------');
-            console.log('RUN: ' + exec_restart);
-            // console.log('out' + out);
-            console.log(' ');
-          });
+              utils.message(commands.restart);
+            });
 
-        });
+          });
 
         } catch(err){
-        console.log('createfile error: ');
-        console.log(err);
+          return cb(err);
         }
 
       } catch (err) {
-        console.log('readfile error: ');
-        console.error(err);
+        return cb(err);
       }
+
     });
 
-  })(this);
+  })(this, cb);
   
 }
 
